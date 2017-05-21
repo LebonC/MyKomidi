@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+	<head>
+		<meta charset='utf-8'>
+		<title>myKomidi | Connexion</title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="bootstrap/jquery-3.2.0.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="Style.css">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var height = $(document).innerHeight();
+				function changedHeight()
+				{
+					if (height != $(document).innerHeight()) 
+					{
+						height = $(document).innerHeight();
+						if ($(document).innerHeight() < $(document).innerWidth()) 
+						{
+							$('#BodyConnexion').css('top', '250px');
+						}
+						else
+						{
+							$('#BodyConnexion').css('top', '35%');
+						}
+					}
+				}
+
+				$('input').on("keydown", function(event){
+					setTimeout(function(){
+						if (event.keyCode == 13)
+						{
+							verification();
+						}
+					},200)
+				})
+
+				setInterval(changedHeight, 300);
+			});
+
+
+			function verification()
+			{
+				var xmlhttp = new XMLHttpRequest();
+				var bool = false;
+				xmlhttp.onreadystatechange = function() 
+				{
+				    if (this.readyState == 4 && this.status == 200) 
+				    {
+				        var myObj = JSON.parse(this.responseText);
+				        for (i = 0; i <= myObj.length-1; i++)
+				        {
+				        	if(myObj[i]['EmailUtilisateur'] == $('#email').val() && myObj[i]['MDPUtilisateur'] == $('#mdp').val())
+				        	{
+				        		bool = true;
+				        		break;
+				        	}
+				        }
+				        if (bool) 
+						{
+							window.location.replace("vue/vueAccueil.html");
+						}
+						else
+						{
+							$('#Erreur').html("<b style='color:red'>Erreur:</b> information de connexion invalide.");
+							setTimeout(function(){ $('#Erreur').html(''); }, 4000);
+						}
+				    }				
+				};
+				xmlhttp.open("GET", "json.php", true);
+				xmlhttp.send();
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container" id="HeaderConnexion">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2 style="font-weight: bold; font-size: 40px">myKomidi</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p>Le festival de théâtre du sud</p>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="BodyConnexion">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 style="font-weight: bold; font-size: 40px;">Connexion:</h3>
+				</div>
+				<div class="col-sm-12">
+					<p style="font-size: 35px; padding-bottom: 2px; height: 42px;" id="Erreur"></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p style="height: 40px; width: 85%;">Email :<input type="text" style="border: 0.04em solid black; width: 300px; height: 45px; float: right;" id="email"></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p style="height: 40px; width: 85%;">Mot de passe :<input type="password" style="border: 0.04em solid black; width: 300px; height: 45px; float: right;" id="mdp"></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p style="float: left; margin-top: 2%; text-decoration: underline;"><a href="vue/inscription.html">Inscrivez-vous !</a></p>
+					<button onclick="verification()" style="float: right; height: 60px; width: 150px; margin: 1% 15% 0 0; padding: 5px">Valider</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

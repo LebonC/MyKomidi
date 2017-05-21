@@ -1,0 +1,249 @@
+/* Test d'un CSS pour un menu */
+#menu {
+  padding:0;
+  margin:0;
+  list-style:none;
+  text-align: center;
+  width: 200px;
+}
+#menu ul {
+  padding:0;
+  margin:0;
+  list-style:none;
+  text-align: center;
+}
+#menu li {
+   font-size: 16px;
+   text-align: left;
+   color: black;
+   font-weight: bold;
+   background-color: #FEBA00; 
+   background-image:-webkit-linear-gradient(top, #FEBA00 0%, #FEBA00 100%);
+   background-image: linear-gradient(to bottom, #FEBA00 0%, #FEBA00 100%);
+   border-radius: 6px;
+   margin-bottom:2px;
+   box-shadow: 3px 3px 3px #FBFBFB;
+   border:solid 1px #FEBA00
+}
+#menu li li {
+   max-height: 0;
+   overflow: hidden;
+   transition: all .5s;
+   border-radius:0;
+   background: #FBFBFB;
+   box-shadow: none;
+   border:none;
+   margin:0
+}
+#menu a {
+   font-weight: bold;
+  display:block;
+  text-decoration: none;
+  color: #006EFE;
+  padding: 8px 5px;
+  font-family: verdana;
+  font-size:1.2em
+}
+#menu ul li a, #menu li:hover li a {
+  font-size:1em
+}
+#menu li:hover {
+   background: #FE8800
+}
+#menu li li:hover {
+   background: #AAAAAA;
+}
+#menu ul li:last-child {
+   border-radius: 0 0 16px 16px;
+   border:none;
+}
+#menu li:hover li {
+  max-height: 20em;
+}
+
+
+
+
+body 
+{ 
+   margin: 10px;
+   padding: 0px;   
+}
+
+div#entete
+{ 
+   height: auto;
+}
+div#entete img.logo
+{ 
+   float: center;
+   margin: 0px 0px 10px 0px;
+   padding: 0px 0px 0px 0px;
+   /*position:absolute;
+   z-index: -1; */
+}
+div#entete h1
+{
+   margin: 0px 0px 0px 0px;
+}
+div#entete h2
+{
+   padding-left: 5px;
+}
+div#entete h3
+{
+   margin: 0px 0px 0px 0px;
+}
+
+div#titre
+{ 
+   height: 52px;
+   margin: 0px 0px 0px 0px;
+   padding: 5px 0px 5px 0px;   
+}
+div#titre img.logo_titre
+{ 
+   float: left;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;   
+}
+
+div#menu
+{ 
+   float: left;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+   width: 15%;
+} 
+
+div#menu ul
+{ 
+   width: 100%;
+}
+
+
+
+
+div#bloc
+{ 
+   float: left;
+   margin: 10px 0px 10px 0px;
+   padding: 0px 0px 0px 15px;
+   width: 80%;
+}
+
+div#contact
+{ 
+   float: left;
+   margin: 10px 0px 10px 0px;
+   padding: 0px 0px 0px 15px;
+}
+
+div#bloc_contact
+{ 
+   float: left;
+   margin: 10px 0px 10px 0px;
+   padding: 0px 0px 0px 15px;
+}
+
+div#pied
+{ 
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+}
+div#pied p
+{
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 5px;
+}
+
+hr
+{
+   clear: both;
+   margin: 0px 0px 0px 0px;
+}
+p
+{
+   padding: 5px 5px 5px 5px;
+}
+table
+{
+   width: 100%;
+   margin: 10px 0px 10px 0px;
+   padding: 0px 0px 0px 0px;
+}
+tr 
+{
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px;
+}
+td 
+{
+   margin: 0px 0px 0px 0px;
+   padding: 5px 5px 5px 5px;
+}
+textarea 
+{  
+   margin: 0px 5px 0px 0px;
+   padding: 5px 5px 5px 5px;
+}
+
+/* Décoration */
+
+body 
+{ 
+   background-image: url(../images/fond.jpg); 
+   background-repeat: repeat-y;
+   background-position: left;
+   font-family: Arial; 
+   font-size: 12px; 
+   color: #FFFFFF; 
+}
+
+h1 { font-family: Arial; font-size: 22px; color: #F4850E; }
+h2 { font-family: Arial; font-size: 18px; color: white; }
+h3 { font-family: Arial; font-size: 16px; color: #F4850E; }
+
+div#entete h3 { font-family: Arial; font-size: 10px; color: #F4850E; text-transform: uppercase;margin-left: 30px;}
+
+hr { border: 1px solid  #F4850E; /*visibility: visible; } */
+
+table { border: 1px solid #3F3F3F; }
+
+div#menu li { list-style-type: none; }
+div#menu li:hover { background-color: white; }
+div#bloc { border-left: 2px solid  #F4850E; }
+div#bloc li { list-style-type: square; }
+div#contact { border-left: 2px solid  #F4850E; }
+div#bloc_contact {  }
+div#bloc_contact table { margin: 0px; border: 0px; }
+div#bloc_contact td { padding: 0px; text-align: center; }
+div#bloc_contact tr { background-color: transparent; }
+div#bloc_contact a:link, a:visited, a:hover { text-decoration: none; background-color: transparent; }
+
+div#formulaire {margin-left: 0px;padding: 10px auto;width: 60%;}
+
+div#menu a:link, div#menu a:visited { text-decoration: none; font-family: Arial; font-size: 14px; color: white; font-style: normal; }
+div#menu a:hover { text-decoration: none; color:  #F4850E; background-color: transparent; }
+
+div#pied p { font-family: Arial; font-size: 10px; font-style: italic; text-align:right; }
+div#pied a { text-decoration: none; font-family: Arial; font-size: 10px; font-style: italic; color: white; }
+div#pied a:link, a:visited { text-decoration: none; font-family: Arial; font-size: 10px; font-style: italic; color: white; }
+div#pied a:hover { text-decoration: none; font-family: Arial; font-size: 10px; font-style: italic; color: white; background-color: transparent; }
+
+a { text-decoration: underline; font-family: Arial; font-size: 12px; color: white; font-style: normal; }
+a:link, a:visited { text-decoration: underline; font-family: Arial; font-size: 12px; color: white; font-style: normal; }
+a:hover { text-decoration: none; background-color: #F4850E; color: white; }
+
+td { font-family: Arial; color: #000000; font-size: 15px; width: 20%; }
+td.center { text-align: center; }
+td.justify { text-align: justify; }
+tr { background-color: #AFAFAF; }
+
+input { font-family: Arial; font-size: 14px; font-weight: normal; background-color: #F5F5F5; color: #000000; border: 1px solid #3F3F3F; text-indent: 2px; }
+textarea {font-family: Arial; font-size: 12px; font-weight : normal; background-color: #F5F5F5; color: #000000; border: 1px solid #3F3F3F; text-indent: 2px; }
+select {font-family: Arial; font-size: 12px; font-weight : bold; background-color: #F5F5F5; border: 1px solid #3F3F3F; } 
+
+a.backlink { text-decoration: underline; font-family: Arial; font-size: 10px; color: white; font-style: italic; }
+a.backlink:link, a.backlink:visited { text-decoration: underline; font-family: Arial; font-size: 10px; color: white; font-style: italic; }
+a.backlink:hover { text-decoration: none; background-color: transparent; font-size: 10px; color: #AEAEAE; font-style: italic; }

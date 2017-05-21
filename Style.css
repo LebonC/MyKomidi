@@ -1,0 +1,170 @@
+html, body
+{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: grey;
+}
+#HeaderConnexion
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 150px;
+	color: #000000;
+	background-color: #007550;
+	font-size: 40px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+#BodyConnexion
+{
+	position: absolute;
+	top: 35%;
+	left: 10%;
+	right: 10%;
+	width: 80%;
+	height: 340px;
+	font-size: 40px;
+	border: 1px solid black;
+	border-radius: 25px;
+	margin-bottom: 100px;
+}
+#BodyInscription
+{
+	position: absolute;
+	top: 35%;
+	left: 5%;
+	right: 5%;
+	width: 90%;
+	height: 550px;
+	font-size: 40px;
+	border: 1px solid black;
+	border-radius: 25px;
+	margin-bottom: 50px; 
+}
+#BodyAccueil
+{
+	position: absolute;
+	top: 150px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 40px;
+	background-color: #F9F9F9;
+}
+#affiche
+{
+	padding: 0;
+	margin-left: 11%;
+	margin-top: 30px;
+}
+#SpectaclesN
+{
+	position: absolute;
+	top: 30px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 40%;
+}
+#SpectaclesR
+{
+	position: absolute;
+	top: 760px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 40%;
+}
+#SpectaclesN a, #SpectaclesN a:hover, #SpectaclesN a:visited, #SpectaclesR a, #SpectaclesR a:hover, #SpectaclesR a:visited
+{
+	color: #0055AA;
+	text-decoration: none;
+}
+#SpectaclesN a:active
+{
+	color: #3388DD;
+	text-decoration: none;
+}
+#Nav
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 180px;
+	width: 100%;
+	background-color: #151515;
+	color: white;
+	text-align: center;
+	display: none;
+	z-index: 2;
+}
+#Nav a, #Nav a:hover, #Nav a:visited
+{
+	color: white;
+	text-decoration: none;
+}
+#Nav a:active
+{
+	color: #3388DD;
+	text-decoration: none;
+}
+#image
+{
+	width: 250px;
+	margin: 0 15px 30px 75px;
+	height: 200px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: 0.3s;
+}
+#image:hover {opacity: 0.7;}
+
+.modal {
+	display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/*#transparenceS
+{
+	position: absolute;
+	top: 19.8%;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #333333;
+	opacity: 0.7;
+}
+#transparenceSR
+{
+	position: absolute;
+	top: 36%;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #333333;
+	opacity: 0.7;
+}*/
