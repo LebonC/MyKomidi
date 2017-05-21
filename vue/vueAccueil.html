@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+	<head>
+		<meta charset='utf-8'>
+		<title>myKomidi | Connexion</title>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="../bootstrap/jquery-3.2.0.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="../Style.css">
+		<script type="text/javascript">
+			function capitalizeFirstLetter(string) 
+			{
+    			return (string.charAt(0).toUpperCase() + string.slice(1));
+			}
+			function Spectacles()
+			{
+				var xmlhttp = new XMLHttpRequest();
+				var bool = false;
+				xmlhttp.onreadystatechange = function() 
+				{
+				    if (this.readyState == 4 && this.status == 200) 
+				    {
+				        var myObj = JSON.parse(this.responseText);
+				        var z = 1;
+				        for (i = 0; i <= myObj.length-1; i++)
+				        {
+				        	if(myObj[i]['Spe_titre'] != undefined)
+				        	{
+				        		$('#titre'+z+' a').html(capitalizeFirstLetter(myObj[i]['Spe_titre'].toLowerCase()));
+				        		$('#titre'+z+' a').attr('href', 'vueSpectacle?id='+myObj[i]['Spe_id']);
+				        		$('#note'+z).html(parseFloat(myObj[i]['Note']).toFixed(2)+"("+myObj[i]['NbNote']+"<span class='glyphicon glyphicon-user'></span>)");
+				        		z++;
+				        	}
+				        }
+				    }				
+				};
+				xmlhttp.open("GET", "../json.php", true);
+				xmlhttp.send();
+			}
+
+			function SpectaclesRandom()
+			{
+				var xmlhttp = new XMLHttpRequest();
+				var bool = false;
+				xmlhttp.onreadystatechange = function() 
+				{
+				    if (this.readyState == 4 && this.status == 200) 
+				    {
+				        var myObj = JSON.parse(this.responseText);
+				        var z = 1;
+				        for (i = 0; i <= myObj.length-1; i++)
+				        {
+				        	if(myObj[i]['Random'] != undefined || myObj[i]['Random'] == 0)
+				        	{
+				        		$('#titreA'+z+' a').html(capitalizeFirstLetter(myObj[i]['Spe_titre'].toLowerCase()));
+				        		$('#titreA'+z+' a').attr('href', 'vueSpectacle?id='+myObj[i]['Spe_id']);
+				        		if (myObj[i]['NbNote'] > 0)
+				        		{
+				        			$('#noteA'+z).html(parseFloat(myObj[i]['Note']).toFixed(2)+"("+myObj[i]['NbNote']+"<span class='glyphicon glyphicon-user'></span>)");
+				        		}
+				        		else
+				        		{
+				        			$('#noteA'+z).html(0+"("+myObj[i]['NbNote']+"<span class='glyphicon glyphicon-user'></span>)");
+				        		}
+				        		z++;
+				        	}
+				        }
+				    }				
+				};
+				xmlhttp.open("GET", "../json.php", true);
+				xmlhttp.send();
+			}
+
+			$(document).ready(function(){
+				var height = $(document).innerHeight();
+				function changedHeight()
+				{
+					if (height != $(document).innerHeight()) 
+					{
+						height = $(document).innerHeight();
+						if ($(document).innerHeight() < $(document).innerWidth()) 
+						{
+							$('#BodyConnexion').css('top', '250px');
+						}
+						else
+						{
+							$('#BodyConnexion').css('top', '35%');
+						}
+					}
+				}
+				setInterval(changedHeight, 300);
+				Spectacles();
+				SpectaclesRandom();
+
+				$('#btnNav').on('click', function(){
+					$('#Nav').animate({
+						height: 'toggle'
+					});
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container" id="HeaderConnexion">
+			<button style="position: absolute; right: 5%; top: 25%; height: 50%; width: 100px; background-color: black; border: none; paddding: 0; z-index: 10" id="btnNav">
+				<span style="color: white; padding-top: 15%; height: 50%;" class="glyphicon glyphicon-menu-hamburger"></span>
+			</button>
+			<div class="row">
+				<div class="col-sm-12">
+					<h2 style="font-weight: bold; font-size: 40px">myKomidi</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p>Le festival de théâtre du sud</p>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="BodyAccueil">
+			<div class="container" id="Nav">
+				<div class="row" style="border-bottom: 5px solid #404040">
+					<div class="col-sm-12"><a href="vueAccueil.html">Accueil</a></div>
+				</div>
+				<div class="row" style="border-bottom: 5px solid #404040">
+					<div class="col-sm-12"><a href="VueSpectacles.html">Spectacle</a></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12"><a href="VueSalle.html">Salle</a></div>
+				</div>
+			</div>
+			<div class="container" id="SpectaclesN">
+				<div id="transparenceS"></div>
+				<div class="row" style="height: 90px; border: 0.06em solid black; background-color: #303030; color: #FFFFFF">
+					<div class="col-sm-12" style="text-align: center;">
+						<h3 style="font-size: 40px; font-weight: bold;">Les mieux notées</h3>
+					</div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.08em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titre1" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="note1"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.08em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titre2" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="note2"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.08em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titre3" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="note3"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.08em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titre4" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="note4"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.08em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titre5" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="note5"></div>
+				</div>
+			</div>
+
+			<div class="container" id="SpectaclesR">
+				<div class="container" id="transparenceSR"></div>
+				<div class="row" style="height: 90px; border: 0.06em solid black; background-color: #303030;">
+					<div class="col-sm-12">
+						<h3 style="font-size: 40px; font-weight: bold; float: left; padding-left: 300px; color: #FFFFFF">Autres spectacles</h3>
+						<button onclick="SpectaclesRandom()" style="float: right; height: 74px; padding: 10px; margin-top: 4px"><span class="glyphicon glyphicon-refresh"></span> Actualisé</button>
+					</div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.06em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titreA1" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="noteA1"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.06em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titreA2" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="noteA2"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.06em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titreA3" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="noteA3"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.06em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titreA4" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="noteA4"></div>
+				</div>
+				<div class="row" style="height: 120px; border: 0.06em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em">
+					<div class="col-sm-8" id="titreA5" style="font-weight: bold; padding: 1px;"><a href="#"></a></div>
+					<div class="col-sm-4" style="text-align: right; font-weight: bold; padding-top: 25px;" id="noteA5"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

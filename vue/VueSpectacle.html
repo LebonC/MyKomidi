@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test</title>
+		<link rel="stylesheet" type="text/css" href="../Style.css">
+	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    <script>
+		$(document).ready(function() {
+			$.urlParam = function(name){
+				var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				return results[1] || 0;
+			}
+			numSpec = $.urlParam('Num');
+
+		// example.com?param1=name&param2=&id=6
+		//$.urlParam('id');        // 6
+		//$.urlParam('param2');   // null
+
+		/*//example params with spaces
+		http://www.jquery4u.com?city=Gold Coast
+		console.log($.urlParam('city'));  
+		//output: Gold%20Coast
+
+		console.log(decodeURIComponent($.urlParam('city')));  
+		//output: Gold Coast */
+
+		function AfficheDescSpectacles() 
+		{
+			var xmlhttp = new XMLHttpRequest();
+
+			xmlhttp.onreadystatechange = function()
+			{                
+				if (this.readyState == 4 && this.status == 200)
+				{
+					var myObj = JSON.parse(this.responseText);
+					$("#DispSpec").attr("src", "../image/"+myObj.Spe_affiche.replace("%20", " "));
+					$("#TitreSpec").html(myObj.Spe_titre);  
+					$("#AnneeSpec").html(myObj.Spe_annee);
+					$("#AuteurSpec").html(myObj.Spe_mes);
+					$("#ActeurSpec").html(myObj.Spe_acteur);
+					$("#CieSpec").html(myObj.Spe_cie);
+					$("#DureeSpec").html(myObj.Spe_duree);
+					$("#LangueSpec").html(myObj.Spe_Lang);
+					$("#PublicSpec").html(myObj.Spe_public);
+					$("#ResCSpec").html(myObj.Spe_resume_court);
+					$("#ResLSpec").html(myObj.Spe_resume_long);
+					$("#GenreSpec").html(myObj.Gre_nom);        
+				}
+			};
+			modele = "../modele/modele.php?Num="+this.numSpec;
+			console.log(modele)
+			xmlhttp.open("GET",modele, true);
+			xmlhttp.send();
+        }
+        AfficheDescSpectacles();
+        $('#btnNav').on('click', function(){
+			$('#Nav').animate({
+				height: 'toggle'
+			});
+		})
+        });
+
+	</script>
+	</head>
+	<body style="background-color: #F0F8FF">
+		<div class="container" id="HeaderConnexion">
+			<button style="position: absolute; right: 5%; top: 25%; height: 50%; width: 100px; background-color: black; border: none; paddding: 0; z-index: 10" id="btnNav">
+				<span style="color: white; padding-top: 15%; height: 50%;" class="glyphicon glyphicon-menu-hamburger"></span>
+			</button>
+			<div class="row">
+				<div class="col-sm-12">
+					<h2 style="font-weight: bold; font-size: 40px">myKomidi</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p>Le festival de théâtre du sud</p>
+				</div>
+			</div>
+		</div>
+			<div class="container" id="BodyAccueil">
+				<div class="container" id="Nav">
+					<div class="row" style="border-bottom: 5px solid #404040">
+						<div class="col-sm-12"><a href="vueAccueil.html">Accueil</a></div>
+					</div>
+					<div class="row" style="border-bottom: 5px solid #404040">
+						<div class="col-sm-12"><a href="VueSpectacles.html">Spectacle</a></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12"><a href="VueSalle.html">Salle</a></div>
+					</div>
+				</div>
+			</div>
+
+
+		<div class="row" style="margin-top: 180px; padding-left: 10%">
+			<div class="col-sm-12" style="padding: 0; margin-bottom: 65%; width: 80%; height: 50%; margin-left: 5%">
+				<img id="DispSpec" style="width: 100%; height: 100%"> 
+			</div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 75%; margin-top: -60%; font-size: 25px; color: #CD5C5C">Titre : <span id="TitreSpec"></span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 70%; margin-top: -72%; font-size: 25px; color: #20B2AA">Ann&eacute;e : <span id="AnneeSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 65%; margin-top: -66%; font-size: 25px; color: #BA55D3">Auteur : <span id="AuteurSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 60%; margin-top: -62%; font-size: 25px; color: #BDB76B">Acteurs : <span id="ActeurSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 55%; margin-top: -57%; font-size: 25px; color: #CD853F">Cie : <span id="CieSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 50%; margin-top: -52%; font-size: 25px; color: #2E8B57"> Langue : <span id="LangueSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 40%; margin-top: -47%; font-size: 25px; color: #708090"> Public vis&eacute; : <span id="PublicSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 35%; margin-top: -39%; font-size: 25px; color: #DC143C"> R&eacute;sum&eacute; court : <span id="ResCSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 30%; margin-top: -32%; font-size: 25px; color: #7B68EE"> Resum&eacute; long : <span id="ResLSpec"> </span></div>
+			<div class="col-sm-12" style="text-align: auto; margin-left: 0; margin-bottom: 25%; margin-top: -27%; font-size: 25px; color: #E9967A"> Genre : <span id="GenreSpec"> </span></div>
+		</div>
+
+	</body>
+</html>
+			
+

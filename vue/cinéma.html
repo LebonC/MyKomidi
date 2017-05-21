@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- la balise suivant permet de block la map en pleine écran de façon a ce que l'utilisateur ne puissent pas la réduire --> 
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<style type="text/css">
+		    html { height: 100% }
+		    body { height: 100%; margin: 0px; padding: 0px }
+		    #map { height: 100% ; width:100%;}
+		</style>
+		<!-- La balise suivant fais appela l"API de google map --> 
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=set_to_true_or_false"></script>
+		<title>Géolocalisation Cinéma Royale</title>
+	</head>
+	<body onload="initialize()">
+
+		<!-- Un élément HTML pour recueillir la carte -->
+		<div id="map"></div>
+
+		<!-- Un élément HTML pour recueillir l’affichage -->
+		<div id="infoposition"></div>
+
+		<script type="text/javascript">		
+			// Fonction de callback en cas de succès
+			function maPosition(position) {
+			  var infopos = "Position déterminée :\n";
+			  infopos += "Latitude : "+position.coords.latitude +"\n";
+			  infopos += "Longitude: "+position.coords.longitude+"\n";
+			  infopos += "Altitude : "+position.coords.altitude +"\n";
+			  document.getElementById("infoposition").innerHTML = infopos;
+			
+		    // Un nouvel objet LatLng pour Google Maps avec les paramètres de position
+		    latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		 
+		    // Ajout d'un marqueur à la position trouvée
+		    var marker = new google.maps.Marker({
+		      position: latlng,
+		      map: map,
+		      title:"Vous êtes ici"
+		    });
+		    
+		    // Permet de centrer la carte sur la position latlng
+		    map.panTo(latlng);
+			}
+
+			if(navigator.geolocation)
+			  navigator.geolocation.getCurrentPosition(maPosition);
+
+
+			// Position par défaut (Cinéma royal)
+			var centerpos = new google.maps.LatLng(-21.380134,55.616107);
+			
+			// Options relatives à la carte
+			var optionsGmaps = {
+			    center:centerpos,
+			    mapTypeId: google.maps.MapTypeId.ROADMAP,
+			    zoom: 15
+			};
+			// ROADMAP peut être remplacé par SATELLITE, HYBRID ou TERRAIN
+			// Zoom : 0 = terre entière, 19 = au niveau de la rue
+			 
+			// Initialisation de la carte pour l'élément portant l'id "map"
+			var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
+			  
+			// .. et la variable qui va stocker les coordonnées
+			var latlng;
+
+			// Fonction de callback en cas d’erreur
+			function erreurPosition(error) {
+			    var info = "Erreur lors de la géolocalisation : ";
+			    switch(error.code) {
+			    case error.TIMEOUT:
+			    	info += "Timeout !";
+			    break;
+			    case error.PERMISSION_DENIED:
+				info += "Vous n’avez pas donné la permission";
+			    break;
+			    case error.POSITION_UNAVAILABLE:
+			    	info += "La position n’a pu être déterminée";
+			    break;
+			    case error.UNKNOWN_ERROR:
+				info += "Erreur inconnue";
+			    break;
+			    }
+			    document.getElementById("infoposition").innerHTML = info;
+			}
+		</script>
+		
+	</body>
+</html>

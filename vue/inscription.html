@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+	<head>
+		<meta charset='utf-8'>
+		<title>myKomidi | Inscription</title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="bootstrap/jquery-3.2.0.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="Style.css">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var height = $(document).innerHeight();
+				function changedHeight()
+				{
+					if (height != $(document).innerHeight()) 
+					{
+						height = $(document).innerHeight();
+						if ($(document).innerHeight() < $(document).innerWidth()) 
+						{
+							$('#BodyConnexion').css('top', '250px');
+						}
+						else
+						{
+							$('#BodyConnexion').css('top', '35%');
+						}
+					}
+				}
+				setInterval(changedHeight, 300);
+
+
+				$('#email').keydown(function()
+				{
+					setTimeout(function() 
+					{
+						var bool = false;
+						list = [".com", ".re", ".fr", ".net", ".org"];
+						if ($('#email').val().length > 0)
+						{
+							if (!$('#email').val().includes("@")) 
+							{
+								$('#email').css('backgroundColor' , '#FF8888');
+							}
+							else
+							{
+								for (i = 0; i <= list.length-1; i++)
+								{
+									if ($('#email').val().includes(list[i])) 
+									{
+										bool = true;
+										$('#email').css('backgroundColor', '#55FF55');
+									}
+								}
+								if (!bool)
+								{
+									$('#email').css('backgroundColor' , '#FF8888');
+								}
+							}
+						}
+						else
+						{
+							$('#email').css('backgroundColor', 'white');
+						}
+					}, 200);
+				})
+
+				$('#nom').keydown(function(){
+					setTimeout(function(){
+						if ($('#nom').val().length > 0 && $('#nom').val().length < 4) 
+						{
+							$('#nom').css('backgroundColor', '#FF8888');
+						}
+						else if ($('#nom').val().length > 3) 
+						{
+							$('#nom').css('backgroundColor', '#55FF55');
+						}
+						else
+						{
+							$('#nom').css('backgroundColor', 'white');
+						}
+					}, 200);
+				})
+
+				$('#prenom').keydown(function(){
+					setTimeout(function(){
+						if ($('#prenom').val().length > 0 && $('#prenom').val().length < 4) 
+						{
+							$('#prenom').css('backgroundColor', '#FF8888');
+						}
+						else if ($('#prenom').val().length > 3) 
+						{
+							$('#prenom').css('backgroundColor', '#55FF55');
+						}
+						else
+						{
+							$('#prenom').css('backgroundColor', 'white');
+						}
+					}, 200);
+				})
+
+				$('#mdp').keydown(function(){
+					setTimeout(function(){
+						if ($('#mdp').val().length > 0 && $('#mdp').val().length < 4) 
+						{
+							$('#mdp').css('backgroundColor', '#FF8888');
+						}
+						else if ($('#mdp').val().length > 3) 
+						{
+							$('#mdp').css('backgroundColor', '#55FF55');
+						}
+						else
+						{
+							$('#mdp').css('backgroundColor', 'white');
+						}
+						$('#Rmdp').val("");
+						$('#Rmdp').css('backgroundColor', 'white');
+					}, 200);
+				})
+
+				$('#Rmdp').keydown(function(){
+					setTimeout(function(){
+						if ($('#Rmdp').val() != $('#mdp').val() && $('#Rmdp').val().length > 0) 
+						{
+							$('#Rmdp').css('backgroundColor', '#FF8888');
+						}
+						else if ($('#Rmdp').val() == $('#mdp').val() && $('#Rmdp').val().length > 0) 
+						{
+							$('#Rmdp').css('backgroundColor', '#55FF55');
+						}
+						else
+						{
+							$('#Rmdp').css('backgroundColor', 'white');
+						}
+					}, 200);
+				})
+
+			})
+			function verification()
+			{
+				var bool = true;
+				list = ['#nom', '#prenom', '#email', '#mdp', '#Rmdp'];
+				for (i = 0; i <= list.length-1; i++)
+				{
+					if ($(list[i]).css('backgroundColor') != 'rgb(85, 255, 85)') 
+					{
+						bool = false;
+						break;
+					}
+				}
+				if (bool) 
+				{
+					inscription();
+				}
+				else
+				{
+					$('#erreur').html(" <b style='color: red;'>Erreur :</b> champs vides ou invalides !");
+					setTimeout(function(){ $('#erreur').html(""); }, 3000);
+				}
+			}
+			function inscription()
+			{
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET", "json.php?nom="+$('#nom').val()+"&prenom="+$('#prenom').val()+"&email="+$('#email').val()+"&mdp="+$('#mdp').val(), true);
+				xmlhttp.send();
+				window.location.replace('vueAccueil.html');
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container" id="HeaderConnexion">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2 style="font-weight: bold; font-size: 40px">myKomidi</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p>Le festival du théâtre du sud</p>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="BodyInscription">
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-sm-12">
+					<h3 style="font-weight: bold; font-size: 40px;">Inscription :</h3>
+					<p style="text-align: center; width: 100%; height: 40px; font-size: 40px; margin: -10px 0 15px 0;" id="erreur"></p>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-sm-12">
+					<p style="height: 40px; width: 95%;">Nom :<input type="text" style="border: 0.04em solid black; width: 300px; height: 45px; float: right;" id="nom"></p>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-sm-12">
+					<p style="height: 40px; width: 95%;">Prénom :<input type="text" style="border: 0.04em solid black; width: 300px; height: 45px; float: right;" id="prenom"></p>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-sm-12">
+					<p style="height: 40px; width: 95%;">Email :<input type="text" style="border: 0.04em solid black; width: 300px; height: 45px; float: right;" id="email"></p>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-sm-12">
+					<p style="height: 40px; width: 95%;">Mot de passe :<input type="password" style="border: 0.04em solid black; width: 300px; height: 45px; float: right;" id="mdp"></p>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-sm-12">
+					<p style="height: 40px; width: 95%;">Répéter le mot de passe :<input type="password" style="border: 0.04em solid black; width: 300px; height: 45px; float: right;" id="Rmdp"></p>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-sm-12">
+					<button style="float: right; height: 70px; width: 150px; margin: 1% 5% 0 0; padding: 5px" onclick="verification()">Valider</button>
+					<button onclick="window.location.replace('index.html')" style="float: right; height: 70px; width: 150px; margin: 1% 5% 0 0; padding: 5px">Annuler</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+  <head>
+    <meta charset='utf-8'>
+    <title>myKomidi | Connexion</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="../bootstrap/jquery-3.2.0.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../Style.css">
+    <script>
+    $(document).ready(function(){
+      $('#btnNav').on('click', function(){
+        $('#Nav').animate({
+        height: 'toggle'
+        });
+      })      
+    })
+
+    </script>
+  </head>
+  <body style="background-color: #F0F8FF">
+    <div class="container" id="HeaderConnexion">
+      <button style="position: absolute; right: 5%; top: 25%; height: 50%; width: 100px; background-color: black; border: none; paddding: 0; z-index: 10" id="btnNav">
+        <span style="color: white; padding-top: 15%; height: 50%;" class="glyphicon glyphicon-menu-hamburger"></span>
+      </button>
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 style="font-weight: bold; font-size: 40px">myKomidi</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Salle Par Ville</p>
+        </div>
+      </div>
+    </div>
+      <div class="container" id="BodyAccueil">
+        <div class="container" id="Nav">
+          <div class="row" style="border-bottom: 5px solid #404040">
+            <div class="col-sm-12"><a href="vueAccueil.html">Accueil</a></div>
+          </div>
+          <div class="row" style="border-bottom: 5px solid #404040">
+            <div class="col-sm-12"><a href="VueSpectacles.html">Spectacle</a></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12"><a href="VueSalle.html">Salle</a></div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+        <div id="entete" class="text-center">
+            <h3>KOMIDI APP</h3>
+             <p style="font-size:12px">Bienvenue sur l'application Komidi, cette application vous permet de voir les spectacles disponible ainsi que les salle dans lequellle elle son a laffiche et de géolocaliser la salle de spectacle affin de vous y rendre plus facilement.</p>
+        </div>
+        <hr>
+        <p>Par Ville</p>
+
+
+        <div id="menu" class"container">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Saint Joseph <span class="badge">3 </span><span class="caret"></span></h3>
+                <ul class="dropdown-menu">
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma Royal</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Auditorium</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12">
+              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Petite île <span class="badge">2 </span><span class="caret"></span></h3>
+                <ul class="dropdown-menu">
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12">
+              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Saint Pierre <span class="badge">2 </span><span class="caret"></span></h3>
+                <ul class="dropdown-menu">
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma Rex</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12">
+              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Saint Louis <span class="badge">2 </span><span class="caret"></span></h3>
+                <ul class="dropdown-menu">
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma</a></li>
+                </ul>
+            </div>
+              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">sSaint Paul <span class="badge">8 </span><span class="caret"></span></h3>
+                <ul class="dropdown-menu">
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma Cambaie</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">salle 1</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 2</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 3</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 4</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 5</a></li>
+                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 6</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>

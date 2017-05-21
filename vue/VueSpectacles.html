@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Salles Komidi</title>
+    <link rel="stylesheet" type="text/css" href="../Style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function(){
+                $("img").on("click", function() {                  
+                    window.location.replace('VueSpectacle.html?Num='+$(this).attr("class"));
+            });
+            }, 2000);
+            function AfficheSpectacles() 
+            {
+                var xmlhttp = new XMLHttpRequest();
+                var save = "";
+                xmlhttp.onreadystatechange = function()
+                {                
+                    if (this.readyState == 4 && this.status == 200)
+                    {
+                        var myObj = JSON.parse(this.responseText);
+                        for(i=0; i <= myObj.length-1; i++) 
+                        {
+                            $('#affiche').append("<img src=\"../image/"+(myObj[i]["Spe_affiche"])+ "\" id='image' class='"+(myObj[i]["Spe_id"])+"'>");
+                        }
+                    }
+                };
+                xmlhttp.open("GET", "../modele/modele.php", true);
+                xmlhttp.send();
+            }
+
+            $('#image').bind("click",function(){
+                $(this).animate({left: '100 px'}, "slow");
+                $(this).animate({fontSize: '3em'}, "slow");
+            });
+            $('#btnNav').on('click', function(){
+                $('#Nav').animate({
+                    height: 'toggle'
+                });
+            });
+            AfficheSpectacles();
+        });
+
+    </script>
+    </head>
+
+    <body style="background-color: #F0F8FF">
+
+        <div class="container" id="HeaderConnexion">
+            <button style="position: absolute; right: 5%; top: 25%; height: 50%; width: 100px; background-color: black; border: none; paddding: 0; z-index: 10" id="btnNav">
+                <span style="color: white; padding-top: 15%; height: 50%;" class="glyphicon glyphicon-menu-hamburger"></span>
+            </button>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 style="font-weight: bold; font-size: 40px">myKomidi</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>Le festival de théâtre du sud</p>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="BodyAccueil">
+            <div class="container" id="Nav">
+                <div class="row" style="border-bottom: 5px solid #404040">
+                    <div class="col-sm-12"><a href="vueAccueil.html">Accueil</a></div>
+                </div>
+                <div class="row" style="border-bottom: 5px solid #404040">
+                    <div class="col-sm-12"><a href="VueSpectacles.html">Spectacle</a></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12"><a href="VueSalle.html">Salle</a></div>
+                </div>
+            </div>
+            <div id="affiche"></div>
+        </div>
+
+  </body>
+</html>
