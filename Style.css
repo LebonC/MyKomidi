@@ -4,7 +4,7 @@ html, body
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: grey;
+	background-color: #CCCCCC;
 }
 #HeaderConnexion
 {
@@ -62,7 +62,7 @@ html, body
 	margin-left: 11%;
 	margin-top: 30px;
 }
-#SpectaclesN
+#SpectaclesN, #Salles
 {
 	position: absolute;
 	top: 30px;
