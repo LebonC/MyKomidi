@@ -28,14 +28,14 @@
 				        	if(myObj[i]['Spe_titre'] != undefined)
 				        	{
 				        		$('#titre'+z+' a').html(capitalizeFirstLetter(myObj[i]['Spe_titre'].toLowerCase()));
-				        		$('#titre'+z+' a').attr('href', 'vueSpectacle?id='+myObj[i]['Spe_id']);
+				        		$('#titre'+z+' a').attr('href', 'VueSpectacle.html?Num='+myObj[i]['Spe_id']);
 				        		$('#note'+z).html(parseFloat(myObj[i]['Note']).toFixed(2)+"("+myObj[i]['NbNote']+"<span class='glyphicon glyphicon-user'></span>)");
 				        		z++;
 				        	}
 				        }
 				    }				
 				};
-				xmlhttp.open("GET", "../json.php", true);
+				xmlhttp.open("GET", "http://lebonc.alwaysdata.net/json.php", true);
 				xmlhttp.send();
 			}
 
@@ -54,7 +54,7 @@
 				        	if(myObj[i]['Random'] != undefined || myObj[i]['Random'] == 0)
 				        	{
 				        		$('#titreA'+z+' a').html(capitalizeFirstLetter(myObj[i]['Spe_titre'].toLowerCase()));
-				        		$('#titreA'+z+' a').attr('href', 'vueSpectacle?id='+myObj[i]['Spe_id']);
+				        		$('#titreA'+z+' a').attr('href', 'VueSpectacle.html?Num='+myObj[i]['Spe_id']);
 				        		if (myObj[i]['NbNote'] > 0)
 				        		{
 				        			$('#noteA'+z).html(parseFloat(myObj[i]['Note']).toFixed(2)+"("+myObj[i]['NbNote']+"<span class='glyphicon glyphicon-user'></span>)");
@@ -68,7 +68,7 @@
 				        }
 				    }				
 				};
-				xmlhttp.open("GET", "../json.php", true);
+				xmlhttp.open("GET", "http://lebonc.alwaysdata.net/json.php", true);
 				xmlhttp.send();
 			}
 

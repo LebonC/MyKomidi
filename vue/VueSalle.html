@@ -9,12 +9,35 @@
     <script src="../bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../Style.css">
     <script>
-    $(document).ready(function(){
-      $('#btnNav').on('click', function(){
-        $('#Nav').animate({
-        height: 'toggle'
-        });
-      })      
+    $(document).ready(function()
+    {
+	    function Salles()
+	    {
+	        var xmlhttp = new XMLHttpRequest();
+	        var bool = false;
+	        xmlhttp.onreadystatechange = function() 
+	        {
+	            if (this.readyState == 4 && this.status == 200) 
+	            {
+	                var myObj = JSON.parse(this.responseText);
+	                var z = 1;
+	                for (i = 0; i <= myObj.length-1; i++)
+	                {
+	                	ajout = '<div class="row" style="height: 120px; border: 0.06em solid black; border-top: none; background-color: #C0C0C0; padding: 0 0.4em 0 0.4em"><div class="col-sm-12" id="titreA1" style="font-weight: bold; padding: 1px;"> <a href="VueGeolocalisation.html?id=' + myObj[i]['Sal_id'] +' ">'+ myObj[i]['Sal_nom']+ ' (' + myObj[i]['Sal_adresse'] +')</a></div>';
+	                	$('#Salles').append(ajout);
+	                }
+	            }       
+	        };
+	        xmlhttp.open("GET", "http://lebonc.alwaysdata.net/json.php?action", true);
+	        xmlhttp.send();
+	    }
+	    Salles();
+      	
+        $('#btnNav').on('click', function(){
+          $('#Nav').animate({
+          height: 'toggle'
+          });
+        })      
     })
 
     </script>
@@ -35,75 +58,30 @@
         </div>
       </div>
     </div>
-      <div class="container" id="BodyAccueil">
-        <div class="container" id="Nav">
-          <div class="row" style="border-bottom: 5px solid #404040">
-            <div class="col-sm-12"><a href="vueAccueil.html">Accueil</a></div>
-          </div>
-          <div class="row" style="border-bottom: 5px solid #404040">
-            <div class="col-sm-12"><a href="VueSpectacles.html">Spectacle</a></div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12"><a href="VueSalle.html">Salle</a></div>
-          </div>
-        </div>
-      </div>
 
+	    <div class="container" id="BodyAccueil">
+	        <div class="container" id="Nav">
+	            <div class="row" style="border-bottom: 5px solid #404040">
+	            	<div class="col-sm-12"><a href="vueAccueil.html">Accueil</a></div>
+	          	</div>
+	          	<div class="row" style="border-bottom: 5px solid #404040">
+	            	<div class="col-sm-12"><a href="VueSpectacles.html">Spectacle</a></div>
+	          	</div>
+	          	<div class="row">
+	            	<div class="col-sm-12"><a href="VueSalle.html">Salle</a></div>
+	          	</div>
+	        </div>
+	      
 
+			<div class="container" id="Salles">
+				<div class="container" id="transparenceSR"></div>
+				<div class="row" style="height: 90px; border: 0.06em solid black; background-color: #303030;">
+					<div class="col-sm-12">
+						<h3 style="font-size: 40px; font-weight: bold; float: left; padding-left: 300px; color: #FFFFFF">Les Salles</h3>
+					</div>
+				</div>
+			</div>
+		</div>
 
-
-        <div id="entete" class="text-center">
-            <h3>KOMIDI APP</h3>
-             <p style="font-size:12px">Bienvenue sur l'application Komidi, cette application vous permet de voir les spectacles disponible ainsi que les salle dans lequellle elle son a laffiche et de géolocaliser la salle de spectacle affin de vous y rendre plus facilement.</p>
-        </div>
-        <hr>
-        <p>Par Ville</p>
-
-
-        <div id="menu" class"container">
-          <div class="row">
-            <div class="col-sm-12">
-              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Saint Joseph <span class="badge">3 </span><span class="caret"></span></h3>
-                <ul class="dropdown-menu">
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma Royal</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Auditorium</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-12">
-              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Petite île <span class="badge">2 </span><span class="caret"></span></h3>
-                <ul class="dropdown-menu">
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-12">
-              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Saint Pierre <span class="badge">2 </span><span class="caret"></span></h3>
-                <ul class="dropdown-menu">
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma Rex</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-12">
-              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">Saint Louis <span class="badge">2 </span><span class="caret"></span></h3>
-                <ul class="dropdown-menu">
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma</a></li>
-                </ul>
-            </div>
-              <h3 class="dropdown-toggle" data-toggle="dropdown" href="#">sSaint Paul <span class="badge">8 </span><span class="caret"></span></h3>
-                <ul class="dropdown-menu">
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">La Mairie</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Cinéma Cambaie</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">salle 1</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 2</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 3</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 4</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 5</a></li>
-                  <li class="list-group-item"><a href="VueGeolocalisation.html">Salle 6</a></li>
-                </ul>
-            </div>
-          </div>
-        </div>
     </body>
 </html>

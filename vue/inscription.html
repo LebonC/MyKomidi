@@ -3,11 +3,11 @@
 	<head>
 		<meta charset='utf-8'>
 		<title>myKomidi | Inscription</title>
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		<script src="bootstrap/jquery-3.2.0.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<link rel="stylesheet" type="text/css" href="Style.css">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="../bootstrap/jquery-3.2.0.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="../Style.css">
 		<script type="text/javascript">
 			$(document).ready(function(){
 				var height = $(document).innerHeight();
@@ -160,7 +160,7 @@
 			function inscription()
 			{
 				var xmlhttp = new XMLHttpRequest();
-				xmlhttp.open("GET", "json.php?nom="+$('#nom').val()+"&prenom="+$('#prenom').val()+"&email="+$('#email').val()+"&mdp="+$('#mdp').val(), true);
+				xmlhttp.open("GET", "http://lebonc.alwaysdata.net/json.php?nom="+$('#nom').val()+"&prenom="+$('#prenom').val()+"&email="+$('#email').val()+"&mdp="+$('#mdp').val(), true);
 				xmlhttp.send();
 				window.location.replace('vueAccueil.html');
 			}
@@ -214,7 +214,7 @@
 			<div class="row" style="margin-top: 10px;">
 				<div class="col-sm-12">
 					<button style="float: right; height: 70px; width: 150px; margin: 1% 5% 0 0; padding: 5px" onclick="verification()">Valider</button>
-					<button onclick="window.location.replace('index.html')" style="float: right; height: 70px; width: 150px; margin: 1% 5% 0 0; padding: 5px">Annuler</button>
+					<button onclick="window.location.replace('../index.html')" style="float: right; height: 70px; width: 150px; margin: 1% 5% 0 0; padding: 5px">Annuler</button>
 				</div>
 			</div>
 		</div>

@@ -1,70 +1,114 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../Style.css">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<meta charset="utf-8">
 		<!-- la balise suivant permet de block la map en pleine écran de façon a ce que l'utilisateur ne puissent pas la réduire --> 
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-		<style type="text/css">
-		    html { height: 100% }
-		    body { height: 100%; margin: 0px; padding: 0px }
-		    #map { height: 100% ; width:100%;}
-		</style>
+		<!--<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />-->
+		
 		<!-- La balise suivant fais appela l"API de google map --> 
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=set_to_true_or_false"></script>
-		<title>Géolocalisation Cinéma Royale</title>
-	</head>
-	<!--<body onload="initialize()">-->
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDzVKXEwNU231S0tvNiHV0e_iAT4EuplB0"></script>
+		<script>
+			$.urlParam = function(name){
+				var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				return results[1] || 0;
+			};
 
-		<!-- Un élément HTML pour recueillir la carte -->
-		<div id="map"></div>
+			function Spectacles()
+			{
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() 
+				{
+				    if (this.readyState == 4 && this.status == 200) 
+				    {
+				        var myObj = JSON.parse(this.responseText);
+				        $('#latitude').val(myObj[0].Sal_latitude);
+				        $('#longitude').val(myObj[0].Sal_longitude);			    
 
-		<!-- Un élément HTML pour recueillir l’affichage -->
-		<div id="infoposition"></div>
+					}				
+				};
+				xmlhttp.open("GET", "http://lebonc.alwaysdata.net/json.php?id="+IdSalle, true);
+				xmlhttp.send();
+			}
+			$(document).ready(function()
+			{
+				IdSalle = $.urlParam('id');
+			 Spectacles();
+			  
+			setTimeout(function()
+			{
+				console.log($('#latitude').val());
 
-		<script type="text/javascript">		
-			// Fonction de callback en cas de succès
-			function maPosition(position) {
-			  var infopos = "Position déterminée :\n";
-			  infopos += "Latitude : "+position.coords.latitude +"\n";
-			  infopos += "Longitude: "+position.coords.longitude+"\n";
-			  infopos += "Altitude : "+position.coords.altitude +"\n";
-			  document.getElementById("infoposition").innerHTML = infopos;
-			
-		    // Un nouvel objet LatLng pour Google Maps avec les paramètres de position
-		    latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-		 
-		    // Ajout d'un marqueur à la position trouvée
-		    var marker = new google.maps.Marker({
-		      position: latlng,
-		      map: map,
-		      title:"Vous êtes ici"
-		    });
-		    
-		    // Permet de centrer la carte sur la position latlng
-		    map.panTo(latlng);
+				
+			 var directionsDisplay = new google.maps.DirectionsRenderer();
+			 var directionsService = new google.maps.DirectionsService();
+
+
+			function calcRoute(start, end) {
+
+			  var request = {
+			    origin:start,
+			    destination:end,
+			    travelMode: google.maps.TravelMode.DRIVING
+			  };
+			  directionsService.route(request, function(result, status) {
+			    if (status == google.maps.DirectionsStatus.OK) {
+			      directionsDisplay.setDirections(result);
+			    }
+			  });
 			}
 
-			if(navigator.geolocation)
-			  navigator.geolocation.getCurrentPosition(maPosition);
+			function maPosition(position) {
+				var infopos = "Position déterminée :\n";
+				infopos += "Latitude : "+$('#latitude').val() +"\n";
+				infopos += "Longitude: "+$('#longitude').val() +"\n";
+				document.getElementById("infoposition").innerHTML = infopos;
+			}
+			latLng = new google.maps.LatLng(parseFloat($('#latitude').val()), parseFloat($('#longitude').val()));
 
-
-			// Position par défaut (Cinéma royal)
-			var centerpos = new google.maps.LatLng(-21.380134,55.616107);
 			
-			// Options relatives à la carte
-			var optionsGmaps = {
-			    center:centerpos,
-			    mapTypeId: google.maps.MapTypeId.ROADMAP,
-			    zoom: 15
-			};
-			// ROADMAP peut être remplacé par SATELLITE, HYBRID ou TERRAIN
-			// Zoom : 0 = terre entière, 19 = au niveau de la rue
-			 
-			// Initialisation de la carte pour l'élément portant l'id "map"
-			var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
-			  
+			// Permet de centrer la carte sur la position latlng
+			
+			
+			if(navigator.geolocation)
+				navigator.geolocation.getCurrentPosition(function(position)
+				{
+					var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+					var marker = new google.maps.Marker({
+						position: pos,
+						map: map,
+						title:"Vous êtes ici"
+					});
+					calcRoute(pos, latLng);
+
+					map.panTo(pos);
+					directionsDisplay.setMap(map);
+				});
+
+
+			//var latLng = new google.maps.LatLng(-21.380134,55.616107);
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 16,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				center: latLng
+			});
+
+			
+
+			var marker = new google.maps.Marker({
+				position: latLng,
+				map: map,
+				title:"Vous aller là"
+			});
+			
+			
+
 			// .. et la variable qui va stocker les coordonnées
-			var latlng;
+			var latLng;
 
 			// Fonction de callback en cas d’erreur
 			function erreurPosition(error) {
@@ -85,7 +129,74 @@
 			    }
 			    document.getElementById("infoposition").innerHTML = info;
 			}
+
+			},2000);
+		    
+			
+				$('#btnNav').on('click', function(){
+          			$('#Nav').animate({
+          				height: 'toggle'
+          			});
+        		});
+
+			
+			});
+
+
+
+
 		</script>
+		<title>Géolocalisation Salle</title>
+	</head>
+	<body>
+	<div class="container" id="HeaderConnexion">
+      <button style="position: absolute; right: 5%; top: 25%; height: 50%; width: 100px; background-color: black; border: none; paddding: 0; z-index: 10" id="btnNav">
+        <span style="color: white; padding-top: 15%; height: 50%;" class="glyphicon glyphicon-menu-hamburger"></span>
+      </button>
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 style="font-weight: bold; font-size: 40px">myKomidi</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Salle Par Ville</p>
+        </div>
+      </div>
+    </div>
+
+
+	<input type="text" id="latitude" hidden>
+	<input type="text" id="longitude" hidden>
+
+		<div id="BodyAccueil" class="container">
+		<div class="container" id="Nav">
+				<div class="row" style="border-bottom: 5px solid #404040">
+					<div class="col-sm-12"><a href="vueAccueil.html">Accueil</a></div>
+				</div>
+				<div class="row" style="border-bottom: 5px solid #404040">
+					<div class="col-sm-12"><a href="VueSpectacles.html">Spectacle</a></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12"><a href="VueSalle.html">Salle</a></div>
+				</div>
+			</div>
+			<div class="row" style="height: 100%" >
+				<div class="col-sm-12" id="map" style="height: 100%"></div>
+
+		<!-- Un élément HTML pour recueillir la carte -->
+			</div>
+			<div class="row">
+
+		<!-- Un élément HTML pour recueillir l’affichage -->
+				<div id="infoposition" class="col-sm-12"></div>
+			</div>
+		</div>
+
 		
 	</body>
 </html>
+
+
+
+

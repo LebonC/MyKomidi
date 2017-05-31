@@ -49,7 +49,7 @@
 					$("#GenreSpec").html(myObj.Gre_nom);        
 				}
 			};
-			modele = "../modele/modele.php?Num="+this.numSpec;
+			modele = "http://lebonc.alwaysdata.net/modele/modele.php?Num="+this.numSpec;
 			console.log(modele)
 			xmlhttp.open("GET",modele, true);
 			xmlhttp.send();
