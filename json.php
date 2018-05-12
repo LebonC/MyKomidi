@@ -48,19 +48,33 @@
 							ORDER BY RAND()
 						   ');
 	}
-
-	$affiche = json_encode(getUser()->fetchAll(PDO::FETCH_ASSOC));
-	$len = strlen($affiche)-1;
-	$affiche[$len] = ",";
-	$affiche.= json_encode(getSpectacles()->fetchAll(PDO::FETCH_ASSOC));
-	$affiche[$len+1] = " ";
-	$len = strlen($affiche)-1;
-	$affiche[$len] = ",";
-	$affiche.= json_encode(getSpectaclesRandom()->fetchAll(PDO::FETCH_ASSOC));
-	$affiche[$len+1] = " ";
-	echo $affiche;
-	if (isset($_GET['nom'])) 
+	function getSalles()
 	{
-		newUser();
+		$cnx = getCnx();
+		return $cnx->query('SELECT * FROM kdi_salle
+						   ');		
 	}
+
+		if(!isset($_GET['action']))
+	{
+		$affiche = json_encode(getUser()->fetchAll(PDO::FETCH_ASSOC));
+		$len = strlen($affiche)-1;
+		$affiche[$len] = ",";
+		$affiche.= json_encode(getSpectacles()->fetchAll(PDO::FETCH_ASSOC));
+		$affiche[$len+1] = " ";
+		$len = strlen($affiche)-1;
+		$affiche[$len] = ",";
+		$affiche.= json_encode(getSpectaclesRandom()->fetchAll(PDO::FETCH_ASSOC));
+		$affiche[$len+1] = " ";
+		echo $affiche;
+	} 
+	else 
+	{
+		echo json_encode(getSalles()->fetchAll(PDO::FETCH_ASSOC));
+	}
+	if (isset($_GET['nom'])) 
+		{
+			newUser();
+		}
+
 ?>
